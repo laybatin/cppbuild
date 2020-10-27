@@ -1,0 +1,55 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "build and run c++",
+            "command": "/usr/bin/g++",
+            "args": [                
+                "-std=c++17",                
+                "${file}",
+                "-g",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}",
+                ";",
+                "${fileDirname}/${fileBasenameNoExtension}",
+            ],
+            "options": {
+                "cwd": "/usr/bin"
+            },
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "problemMatcher": {
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "execute",
+            "command": "${fileDirname}/${fileBasenameNoExtension}",
+            "group": "test",
+            "problemMatcher": []
+        }
+    ]
+}
